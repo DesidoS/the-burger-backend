@@ -21,7 +21,7 @@ async function addComent(req, res, next) {
 
   const result = await Burgers.findByIdAndUpdate(
     _id,
-    { $push: { comment: req.body } },
+    { $push: { comment: { ...req.body, id: Date.now() } } },
     { new: true }
   );
   res.status(201).json(result);
